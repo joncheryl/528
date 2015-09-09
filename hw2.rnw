@@ -34,8 +34,77 @@
         
       \end{enumerate}
     
-  \item
+  \item 
+    \begin{enumerate}
+      \item \textbf{Rule 1:} Not sure what you want here: The probability of finding at least one in seven sample means to be beyond three $\sigma$ deviations from the mean when the process is actually in control. This is 1 minus the probability of finding all seven sample means to be within 3 $\sigma$ of the mean. We know the sample means will be distributed normally with standard deviation $\sigma/\sqrt{5}$.
+        
+      \item \textbf{Rule 2:} The probability of finding all seven sample means to be either all above or below the mean quality characteristic. Assuming the characteristic is independently and symmetrically distributed, then this would simply be $\alpha = (\frac{1}{2})^7$.
+        
+    \end{enumerate}
   
+  \item 
+    \begin{enumerate}
+      
+      \item $$ P = 1 - P_c $$
+        $$ = 1 - (P( |x- \mu| < 3\sigma))^9 $$
+        $$ = 1 - (\Sexpr{pnorm(3)-pnorm(-3)})^9 $$
+        $$ = \Sexpr{1-(pnorm(3)-pnorm(-3))^9} $$
+        
+      \item $$ P = 1 - P_0 - P_1 $$
+        $$ = 1 - {9 \choose 0} p^0 (1-p)^{9-0} - {9 \choose 1} p^1 (1-p)^{9-1} $$ where $p \approx .046$
+        $$ = 1 - (\Sexpr{pnorm(2)-pnorm(-2)})^9 - 9( \Sexpr{2*pnorm(-2)}) (\Sexpr{pnorm(2)-pnorm(-2)})^8$$
+        $$ = \Sexpr{1 - (pnorm(2)-pnorm(-2))^9 - 9*(2*pnorm(-2))*(pnorm(2)-pnorm(-2))^8} $$
+        
+      \item $$ P = 2 {9 \choose 9} p^9 (1-p)^{9-9} $$
+        where $p = \frac{1}{2}$
+        $$ = 2 \bigg( \frac{1}{2} \bigg)^9 $$
+        $$ = \Sexpr{2*.5^9} $$
+        
+      \item This has the same probability as part (c)
+        
+      \item $$ P = 1 - P^*_0 - P^*_1 $$
+        $$ = 1 - {9 \choose 0} p^0 (1-p)^{9-0} - {9 \choose 1} p^1 (1-p)^{9-1} $$ where $p \approx .043$
+        $$ = 1 - (\Sexpr{1-2*(pnorm(-2)-pnorm(-3))})^9 - 9( \Sexpr{2*(pnorm(-2)-pnorm(-3))}) (\Sexpr{1-2*(pnorm(-2)-pnorm(-3))})^8$$
+        $$ = \Sexpr{1 - 2*(pnorm(-2)-pnorm(-3))^9 - 9*(2*(pnorm(-2)-pnorm(-3)))*(1-2*(pnorm(-2)-pnorm(-3)))^8} $$
+
+        
+    \end{enumerate}
+    
+  \item
+    \begin{enumerate}
+      
+      \item $$ P = 1 - P_c $$
+        $$ = 1 - (P( -4\sigma < x- \mu - \sigma < 2\sigma))^9 $$
+        $$ = 1 - (\Sexpr{pnorm(2)-pnorm(-4)})^9 $$
+        $$ = \Sexpr{1-(pnorm(2)-pnorm(-4))^9} $$
+        
+      \item $$ P = 1 - P_0 - P_1 $$
+        $$ = 1 - {9 \choose 0} p^0 (1-p)^{9-0} - {9 \choose 1} p^1 (1-p)^{9-1} $$ where $p \approx \Sexpr{1-(pnorm(1)-pnorm(-3))}$
+        $$ = 1 - (\Sexpr{pnorm(1)-pnorm(-3)})^9 - 9( \Sexpr{1-(pnorm(1)-pnorm(-3))}) (\Sexpr{pnorm(1)-pnorm(-3)})^8$$
+        $$ = \Sexpr{1 - (pnorm(1)-pnorm(-3))^9 - 9*(1-(pnorm(1) - pnorm(-3)))*(pnorm(1)-pnorm(-3))^8} $$
+        
+      \item $$ P = p^9 + (1-p)^9 $$
+        where $p = \Phi(-1)$
+        $$ = (\Sexpr{pnorm(-1)})^9 + (1-\Sexpr{pnorm(-1)})^9 $$
+        $$ = \Sexpr{pnorm(-1)^9 + (1-pnorm(-1))^9} $$
+        
+      \item $$ P = p^5\cdot(1-p)^4 + p^4\cdot(1-p)^5 $$
+        where $p = \Phi(-1)$
+        $$ \approx \Sexpr{pnorm(-1)^5*(1-pnorm(-1))^4 + pnorm(-1)^4*(1-pnorm(-1))^5}$$
+                
+      \item $$ P = 1 - P^*_0 - P^*_1 $$
+        $$ = 1 - {9 \choose 0} p^0 (1-p)^{9-0} - {9 \choose 1} p^1 (1-p)^{9-1} $$ where $p \approx \Sexpr{pnorm(2)-pnorm(1)+pnorm(-3)-pnorm(-4)}$
+        
+        <<thishere, echo=F>>=
+        b = pnorm(2)-pnorm(1)+pnorm(-3)-pnorm(-4)
+        @
+        
+        $$ = 1 - (\Sexpr{1-a})^9 - 9( \Sexpr{a}) (\Sexpr{1-a})^8$$
+        $$ = \Sexpr{1- (1-a)^9 - 9*a*(1-a)^8} $$
+
+        
+    \end{enumerate}
+    
 \end{enumerate}
 
 \end{document}

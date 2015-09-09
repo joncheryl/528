@@ -101,10 +101,28 @@
         
         $$ = 1 - (\Sexpr{1-a})^9 - 9( \Sexpr{a}) (\Sexpr{1-a})^8$$
         $$ = \Sexpr{1- (1-a)^9 - 9*a*(1-a)^8} $$
-
         
     \end{enumerate}
-    
+
+    \item The population mean and standard deviation would have to be estimated with the data instead of being provided.
+      
+    \item Pareto charts:
+      <<q6a, echo=F, out.width='.7\\linewidth', fig.width=10, fig.height=7>>=
+      week = c(rep(1,11),rep(2,11),rep(3,11))
+      cause = c('sand', 'mis-run', 'blow', 'shift', 'cut', 'broken', 'drop', 'corebreak', 'run-out', 'core missing', 'crush')
+      totals = c(97,8,0,18,0,21,8,23,4,1,0, 120,15,0,12,0,17,13,21,6,3,6, 82,4,1,0,1,25,12,38,5,3,9)
+      
+      stuff = data.frame(week,cause,totals)
+      stuff$cause = factor(stuff$cause)
+      
+      week1 = stuff[stuff$week==1,]
+      week2 = stuff[stuff$week==2,]
+      week3 = stuff[stuff$week==3,]
+      
+      week1$cause = with(week1, factor(week1$cause, levels=week1[order(-totals),]$cause))
+      ggplot(week1, aes(cause, totals)) + geom_bar(stat='identity')
+@
+
 \end{enumerate}
 
 \end{document}

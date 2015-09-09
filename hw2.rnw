@@ -1,0 +1,41 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath}
+
+\title{\vspace{-70pt} STATS 528: HW2 \vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item 
+    \begin{enumerate}
+      \item Histogram of density. The density appears to be right skewed but other wise have an approximate normal distribution:
+        <<q1a, echo=F, out.width='.7\\linewidth', fig.width=10, fig.height=7>>=
+        q1_data = read.table('HW2B.TXT', header=T)
+        hist(q1_data$density, main='Distribution of Density', xlab='density')
+        @
+    
+      \item Scatter plot:
+        <<q1b, echo=F, out.width='.7\\linewidth', fig.width=10, fig.height=7>>=
+        plot(q1_data$density~q1_data$SAMPLE)
+        @
+        
+      \item It does not seem reasonable that the data are independently and identically distributed. There appears to be a cyclic nature to the data, if it was collected sequentially.
+        
+      \end{enumerate}
+    
+  \item
+  
+\end{enumerate}
+
+\end{document}

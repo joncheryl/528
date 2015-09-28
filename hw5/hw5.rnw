@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath}
+
+\title{\vspace{-70pt} STATS 528: HW5 \vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item[7.37] 
+    <<prob1, echo=F>>=
+    prob1 = read.csv('q1.txt', sep=' ', header=F)
+    uBar = sum(prob1$V3)/sum(prob1$V2)
+    nBar = mean(prob1$V2)
+    @
+    The process appears to be in statistical control based on the $u$-chart generated.
+    
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q1.png}
+    \end{center}
+    
+    The centerline should be $\bar{U} = \frac{\sum d_i}{\sum n_i} = \Sexpr{uBar}$. To get control limits for production monitoring that are independent of sample size one could 1) take average of control limits over the days to get control limits for production monitoring, 2) compute $\bar{n} = \frac{1}{m} \sum_{i=1}^m n = \Sexpr{nBar}$ and let
+    \begin{align*}
+      UCL &= \bar{u} + 3\sqrt{\frac{\bar{u}}{\bar{n}}} = \Sexpr{uBar} + 3\sqrt{\frac{\Sexpr{uBar}}{\Sexpr{nBar}}} = \Sexpr{uBar + 3*sqrt(uBar/nBar)} \\
+      LCL &= \bar{u} - 3\sqrt{\frac{\bar{u}}{\bar{n}}} = \Sexpr{uBar} - 3\sqrt{\frac{\Sexpr{uBar}}{\Sexpr{nBar}}} = \Sexpr{uBar - 3*sqrt(uBar/nBar)}
+    \end{align*}
+    
+    or 3) normalize the data but that's not really a solution as it's essentially the same as having control limits dependent on sample size.
+    
+  \item[7.40] 
+    <<prob2, echo=F>>=
+    prob2 = read.csv('q2.txt', sep=' ', header=F)
+    cBar = mean(prob2$V2)
+    @
+    
+    The centerline should be $\bar{c} = \frac{1}{m}\sum_{i=1}^m c_i = \Sexpr{cBar}$ and recommended control limits could be given by
+    \begin{align*}
+      UCL &= \bar{c} + 3\sqrt{\bar{c}} = \Sexpr{cBar} + 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar + 3*sqrt(cBar)} \\
+      LCL &= \bar{c} - 3\sqrt{\bar{c}} = \Sexpr{cBar} - 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar - 3*sqrt(cBar)}
+    \end{align*}
+    
+  \item[Question 3]
+    \begin{enumerate}
+        
+      \item
+
+      \item
+
+      \item
+        
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

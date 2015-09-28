@@ -1,0 +1,106 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath}
+
+\title{\vspace{-70pt} STATS 528: HW4 \vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+  \item[6.13] 
+    \begin{enumerate}
+      \item[(b)] $$UNTL = \bar{\bar{x}} + 3 \hat{\sigma} = \frac{1000}{50} + 3 \cdot 1.56 = \Sexpr{1000/50 + 3*1.56}$$
+        $$ LNTL = \bar{\bar{x}} - 3 \hat{\sigma} = \frac{1000}{50} - 3 \cdot 1.56 = \Sexpr{1000/50 - 3*1.56}$$
+    
+      \item[(c)] Since the lower natural tolerance limit lies above the lower specification limit, it would seem that we should expect essentially no items produced by the process to be conforming below specification. However, since the higher natural tolerance limit lies above the upper specification limit, there is a larger possibility to find units falling above specification.
+        
+      \item[(d)] Proportion that are reworked: $1-\Phi(\frac{23-20}{1.56}) = \Sexpr{1-pnorm((23-20)/1.56)}$
+        
+        Proportion that are scraped: $\Phi(\frac{15-20}{1.56}) = \Sexpr{pnorm((15-20)/1.56)}$
+        
+      \item[(e)] Proportion that are reworked: $1-\Phi(\frac{23-19}{1.56}) = \Sexpr{1-pnorm((23-19)/1.56)}$
+        
+        Proportion that are scraped: $\Phi(\frac{15-19}{1.56}) = \Sexpr{pnorm((15-19)/1.56)}$
+        
+      \end{enumerate}
+    
+  \item[6.36]
+    \begin{enumerate}
+      \item[(b)] Because $X - Y \sim N(\mu_x - \mu_y, \sigma_x^2 + \sigma_y^2)$ we have that the specification should be 
+    $$spec = .09 - z_{0.006} \cdot \sqrt{.4^2 + .3^2} = \Sexpr{.09 - qnorm(.006)*sqrt(.4^2+.3^2)}$$
+    \end{enumerate}
+    
+  \item[6.42] Because botht the $\bar{x}$ chart and $s$ chart exhibit control, we may assume that $X \sim N(200, 1)$ and thus the proportion of product produced that is out of specification is
+    $$ \Phi \Big(\frac{197.5-200}{1} \Big) + \Big(1 - \Phi \Big( \frac{202.5-200}{1} \Big) \Big) = \Sexpr{pnorm(197.5-200) + 1 - pnorm(202.5-200)}$$
+
+  \item[6.44]
+    \begin{enumerate}
+      
+        <<c_4_9, echo=F>>=
+            c_4_9 = .9693
+        @
+        
+      \item[(a)] $$C_p = \frac{USL - LSL}{6\sigma} = \frac{USL - LSL}{CL_\sigma/c_4} = \frac{40}{17.82/c_4} = \Sexpr{40/(17.82/c_4_9)}$$
+        
+        
+        Probability unit is nonconforming = 
+        $$\Phi \Big( \frac{600-610}{CL_\sigma/c_4} \Big) + \Big( 1 - \Phi \Big( \frac{620-610}{CL_\sigma/c_4} \Big) \Big) = \Phi \Big( \frac{600-610}{17.82/c_4} \Big) + \Big( 1 - \Phi \Big( \frac{620-610}{17.82/c_4} \Big) \Big) = \Sexpr{pnorm((600-610)/(17.82/c_4_9)) + 1 - pnorm((620-610)/(17.82/c_4_9))} $$
+        
+        The problem with the charts is the sample standard deviations are all over the place. Thus, sample averages of the units are very consistent, but the within sample variability is quite large.
+        
+    \end{enumerate}
+
+    \item[6.55]
+      \begin{enumerate}
+        \item[(b)] The process appears to be in control.
+          \begin{center} 
+            \includegraphics[width=.5\linewidth]{hw4_question5_1.png}
+          \end{center}
+          
+        \item[(c)] 
+          
+          <<d_2_2, echo=F>>=
+          d_2_2 = 1.128
+          @
+          $$\hat{\mu}_{visc} = 2928.9$$
+          $$\hat{\sigma}_{visc} = \frac{\overline{MR}}{d_2} = \frac{148.2}{\Sexpr{d_2_2}} = \Sexpr{148.2/d_2_2} $$
+          
+      \end{enumerate}
+      
+    \item[6.55 part 2]
+      \begin{enumerate}
+      \item[(b)] The process still appears to be in control.
+          \begin{center} 
+            \includegraphics[width=.5\linewidth]{hw4_question5_2.png}
+          \end{center}
+        
+      \end{enumerate}
+        
+      \item[Question 7] 
+        \begin{enumerate}
+          \item $p$-chart assuming $p$ is unknown:
+            \begin{center} 
+            \includegraphics[width=.5\linewidth]{hw4_question5_3.png}
+          \end{center}
+            
+          \item $$ \bar{p} = \frac{\sum_{i=1}^{26} D_i}{\sum_{i=1}^{26} n_i} = \frac{107}{512} = \Sexpr{107/512} $$
+              
+          \item It appears that the process is in control. There are no points where the percentage of defects excedes $3\hat{\sigma}_{\hat{p}_{n_i}}$ for any sample.
+                
+          \item If it were assumed that $p=0.12$ then I would say it does not appear that this process is in control as the majority of samples result in defect percentages that are greater than 0.12. 
+            
+        \end{enumerate}
+        
+\end{enumerate}
+
+\end{document}

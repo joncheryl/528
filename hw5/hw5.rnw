@@ -54,7 +54,8 @@
       UCL &= \bar{c} + 3\sqrt{\bar{c}} = \Sexpr{cBar} + 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar + 3*sqrt(cBar)} \\
       LCL &= \bar{c} - 3\sqrt{\bar{c}} = \Sexpr{cBar} - 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar - 3*sqrt(cBar)}
     \end{align*}
-    
+
+    Since it doesn't make sense to have a LCL be negative, it is then recommended that the LCL is 0. Thus, the UCL and LCL coincide with the $c$ chart given by SAS.
   \item[Question 3]
     \begin{enumerate}
         

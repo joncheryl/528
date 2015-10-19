@@ -25,6 +25,23 @@
         
   \end{enumerate}
 
+\item Pareto chart for a check sheet:
+  <<q3, echo=F, out.width='.7\\linewidth', fig.width=10, fig.height=7>>=
+  library(ggplot2)
+      
+  cause = c('Bridgeing metal', 'Misalignment', 'Contamination', 'Poor contact', 'Poor development')
+  totals = c(26, 11, 9, 45, 8)
+      
+  stuff = data.frame(cause,totals)
+  stuff$cause = factor(stuff$cause)
+        
+  stuff = stuff[order(stuff$totals, decreasing=T),]
+  stuff$cause = factor(stuff$cause, levels=stuff$cause)
+  stuff$cum = cumsum(stuff$totals)
+
+  ggplot(stuff, aes(x=cause)) + geom_bar(aes(y=totals), stat='identity') + geom_point(aes(y=cum)) + geom_path(aes(y=cum, group=1)) + theme_bw()
+  @
+
 \end{enumerate}
 
 \end{document}

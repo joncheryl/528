@@ -42,21 +42,35 @@
     prob2 = read.csv('q2.txt', sep=' ', header=F)
     cBar = mean(prob2$V2)
     @
-    
+
+    The process appears to be in control, althought this is without any reference to ANY notion of what ``control'' means in this context. If someone dies if there is a defect in a tape deck, then in no way is this process in control (statistical control or otherwise).
+
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q2.png}
+    \end{center}
+
     The centerline should be $\bar{c} = \frac{1}{m}\sum_{i=1}^m c_i = \Sexpr{cBar}$ and recommended control limits could be given by
     \begin{align*}
       UCL &= \bar{c} + 3\sqrt{\bar{c}} = \Sexpr{cBar} + 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar + 3*sqrt(cBar)} \\
       LCL &= \bar{c} - 3\sqrt{\bar{c}} = \Sexpr{cBar} - 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar - 3*sqrt(cBar)}
     \end{align*}
     
+    It doesn't make sense to have a negative LCL for a number of nonconformities, thus a more reasonable LCL would be 0.
+    
   \item[Question 3]
     \begin{enumerate}
         
-      \item
+      \item 
 
-      \item
+      \item 
 
-      \item
+      \item 
+        \begin{align*}
+          \hat{C}_p &= \frac{USL - LSL}{\hat{\sigma}} = \\
+          \hat{C}_{pk} &= \min(\hat{C}_{pu}, \hat{C}_{pl}) = \min(\frac{USL - \hat{\mu}}{3\hat{\sigma}}, \frac{\hat{\mu} - LSL}{3\hat{\sigma}}) \\
+          \hat{C}_{pm} &= \frac{\hat{C}_p}{\sqrt{1 + V^2}} \\
+          \mbox{where } V &= \frac{\bar{x} - \frac{1}{2}(USL - LSL)}{s}
+        \end{align*}
         
     \end{enumerate}
 

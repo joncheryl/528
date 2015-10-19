@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath}
+
+\title{\vspace{-70pt} STATS 528: Exam 1\vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item
+  \begin{enumerate}
+  \item $X \sim \mbox{Bin}(500, 0.002)$
+        
+  \item $(P(X<2))^{10} = (\Sexpr{pbinom(1, 500, .002)})^{10} = \Sexpr{pbinom(1, 500, .002)}^{10} $
+        
+  \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

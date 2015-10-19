@@ -29,7 +29,7 @@
       \includegraphics[width=.75\linewidth]{q1.png}
     \end{center}
     
-    The centerline should be $\bar{U} = \frac{\sum d_i}{\sum n_i} = \Sexpr{uBar}$. To get control limits for production monitoring that are independent of sample size one could 1) take average of control limits over the days to get control limits for production monitoring, 2) compute $\bar{n} = \frac{1}{m} \sum_{i=1}^m n = \Sexpr{nBar}$ and let
+    The centerline should be $\bar{U} = \frac{\sum d_i}{\sum n_i} = \Sexpr{uBar}$. To get control limits for production monitoring that are independent of sample size one could 1) take the average of control limits over the days to get control limits for production monitoring, 2) compute $\bar{n} = \frac{1}{m} \sum_{i=1}^m n = \Sexpr{nBar}$ and let
     \begin{align*}
       UCL &= \bar{u} + 3\sqrt{\frac{\bar{u}}{\bar{n}}} = \Sexpr{uBar} + 3\sqrt{\frac{\Sexpr{uBar}}{\Sexpr{nBar}}} = \Sexpr{uBar + 3*sqrt(uBar/nBar)} \\
       LCL &= \bar{u} - 3\sqrt{\frac{\bar{u}}{\bar{n}}} = \Sexpr{uBar} - 3\sqrt{\frac{\Sexpr{uBar}}{\Sexpr{nBar}}} = \Sexpr{uBar - 3*sqrt(uBar/nBar)}
@@ -54,24 +54,43 @@
       UCL &= \bar{c} + 3\sqrt{\bar{c}} = \Sexpr{cBar} + 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar + 3*sqrt(cBar)} \\
       LCL &= \bar{c} - 3\sqrt{\bar{c}} = \Sexpr{cBar} - 3\sqrt{\Sexpr{cBar}} = \Sexpr{cBar - 3*sqrt(cBar)}
     \end{align*}
-    
-    It doesn't make sense to have a negative LCL for a number of nonconformities, thus a more reasonable LCL would be 0.
-    
+
+    Since it doesn't make sense to have a LCL be negative, it is then recommended that the LCL is 0. Thus, the UCL and LCL coincide with the $c$ chart given by SAS.
   \item[Question 3]
     \begin{enumerate}
         
-      \item 
-
-      \item 
-
-      \item 
+      \item
         \begin{align*}
-          \hat{C}_p &= \frac{USL - LSL}{\hat{\sigma}} = \\
-          \hat{C}_{pk} &= \min(\hat{C}_{pu}, \hat{C}_{pl}) = \min(\frac{USL - \hat{\mu}}{3\hat{\sigma}}, \frac{\hat{\mu} - LSL}{3\hat{\sigma}}) \\
-          \hat{C}_{pm} &= \frac{\hat{C}_p}{\sqrt{1 + V^2}} \\
-          \mbox{where } V &= \frac{\bar{x} - \frac{1}{2}(USL - LSL)}{s}
+          \mbox{Normal} &: \mu = 202.69 \;\;\; \sigma = 4.752 \\
+          \mbox{Gamma} &: \mbox{shape } = 3.24 \;\;\; \mbox{scale } = 2.68  \;\;\; \mbox{threshold } = 194\\
+          \mbox{Weibull} &: \mbox{shape } = 1.95 \;\;\; \mbox{scale }=9.84  \;\;\; \mbox{threshold } = 194\\
+          \mbox{Beta} &: \alpha = 2.29 \;\;\; \beta = 5.57 \;\;\; \mbox{threshold } = 194 \;\;\; \mbox{scale } = 30\\
+          \mbox{Lognormal} &: \mbox{shape } = 0.45 \;\;\; \mbox{scale }=2.27 \;\;\; \mbox{threshold } = 192
         \end{align*}
         
+      \item Of the distributions fit, the Weibull and Beta distributions appear to fit the best across the entire range of observations. Neither appears to over estimate the amount of observations at the mean ($\approx 202.7$) and both have right tails that extend to account for some of the larger observations ($>210$). Plot the CDF plot and histogram/PDF plots appear about the same for both distributions:
+        
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q3a.png}
+    \end{center}
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q3b.png}
+    \end{center}
+
+      \item For the Weibull distribution we have:
+        
+        \begin{align*}
+          \hat{C}_p &= 1.05 \\
+          \hat{C}_{pk} &= 0.86 \\
+          \hat{C}_{pm} &= 0.92
+        \end{align*}
+        
+        One way to interpret the $\hat{C}_p$ value is by considering that we estimate that $\frac{100}{\hat{C}_p} = \frac{100}{1.05}  = \Sexpr{100/1.05}$ percent of the specification band for the breaking strengths is being used up by the process (assuming breaking strengths are normally distributed and that the mean is centered between the USL and LSL).
+        
+        Because $\hat{C}_{pk}$ is less than $\hat{C}_p$ we know that the process is not centered in the specification band and that there would be potential improvement by centering the process.
+>>>>>>> eaf0fcf673c845c4df8c463a13748506e8083932
+        
+        Because the $\hat{C}_{pm}$ is relatively close to one, we can assume that the process center is approximately somewhere within the middle third of the specification band. This is of course the case since $\bar{x} = 202.7$.
     \end{enumerate}
 
 \end{enumerate}

@@ -43,8 +43,8 @@
     cBar = mean(prob2$V2)
     @
 
-    The process appears in statistical control once the ``outlying'' observation on deck 2425 is removed:
-    
+    The process appears to be in control, althought this is without any reference to ANY notion of what ``control'' means in this context. If someone dies if there is a defect in a tape deck, then in no way is this process in control (statistical control or otherwise).
+
     \begin{center} 
       \includegraphics[width=.75\linewidth]{q2.png}
     \end{center}
@@ -88,6 +88,7 @@
         One way to interpret the $\hat{C}_p$ value is by considering that we estimate that $\frac{100}{\hat{C}_p} = \frac{100}{1.05}  = \Sexpr{100/1.05}$ percent of the specification band for the breaking strengths is being used up by the process (assuming breaking strengths are normally distributed and that the mean is centered between the USL and LSL).
         
         Because $\hat{C}_{pk}$ is less than $\hat{C}_p$ we know that the process is not centered in the specification band and that there would be potential improvement by centering the process.
+>>>>>>> eaf0fcf673c845c4df8c463a13748506e8083932
         
         Because the $\hat{C}_{pm}$ is relatively close to one, we can assume that the process center is approximately somewhere within the middle third of the specification band. This is of course the case since $\bar{x} = 202.7$.
     \end{enumerate}

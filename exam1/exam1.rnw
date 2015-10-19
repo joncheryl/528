@@ -21,8 +21,16 @@
   \begin{enumerate}
   \item $X \sim \mbox{Bin}(500, 0.002)$
         
-  \item $(P(X<2))^{10} = (\Sexpr{pbinom(1, 500, .002)})^{10} = \Sexpr{pbinom(1, 500, .002)}^{10} $
+  \item $$(P(X<2))^{10} = (\Sexpr{pbinom(1, 500, .002)})^{10} = \Sexpr{pbinom(1, 500, .002)}^{10} $$
         
+  \end{enumerate}
+
+\item 
+  \begin{enumerate}
+  \item $X \sim \mbox{HyGeom}(N = 1000, K = 5, n = 25)$
+    
+  \item $$P(X \leq 1) = P(X = 0) + P(X = 1) = \frac{{5 \choose 0}{1000-5 \choose 25 - 0}}{{1000 \choose 25}} + \frac{{5 \choose 1}{1000-5 \choose 25 - 1}}{{1000 \choose 25}} = \Sexpr{ (choose(5,0) * choose(1000-5,25-0)) / choose(1000,25) + (choose(5,1) * choose(1000-5,25-1)) / choose(1000,25)}$$
+    
   \end{enumerate}
 
 \item Pareto chart for a check sheet:

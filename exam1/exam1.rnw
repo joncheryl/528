@@ -50,6 +50,29 @@
   ggplot(stuff, aes(x=cause)) + geom_bar(aes(y=totals), stat='identity') + geom_point(aes(y=cum)) + geom_path(aes(y=cum, group=1)) + theme_bw()
   @
 
+\item
+  \begin{enumerate}
+  \item 
+    <<q4a, echo=F>>=
+    cp = (26.2 - 23.4)/(6*.5)
+    @
+    $$ C_P = \frac{USL - LSL}{6\sigma} = \frac{26.2 - 23.4}{6 \cdot .5} = \Sexpr{cp} $$
+    
+  \item Based on Table 8.3 in the text, we have that this process capability ratio does not meet the minimum recommended level of 1.33. While the process may be capable of meeting specifications, it doesn't seem likely that it would happen as consistently as desired.
+    
+  \item The proportion of units currently produces not meeting specifications is given by
+    \begin{align*}
+      P(x<23.4) + P(x>26.2) &= P \Big( z < \frac{23.4 - 25}{1.25} \Big) + P\Big( z > \frac{26.2-25}{1.25}\Big) \\
+      &= \Phi(\Sexpr{(23.4-25)/1.25}) + (1 - \Phi(\Sexpr{(26.2-25)/1.25})) \\
+      &= \Sexpr{pnorm((23.4-25)/1.25) + 1 - pnorm((26.2-25)/1.25)} 
+    \end{align*}
+    
+  \item I would say absolutely not. If over a quarter of units produced are not acceptable, then there is clearly a problem and the process is not meeting specificiations.
+    
+  \item 
+    
+  \end{enumerate}
+  
 \end{enumerate}
 
 \end{document}

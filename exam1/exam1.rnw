@@ -145,9 +145,45 @@
       \end{tabular}
       \end{center}
 
-    \item I would say that in this instance, the proportion of data points outside of the control limits is consistent with what would be expected.
+    \item I would say that in this instance, the proportion of data points outside of the control limits is consistent with what would be expected as there are no data points outside of the $UCL$ and $LCL$ for either the $I$ chart of the $MR$ chart.
+      
+    \item For the data used in plot 1, we have
+      $$ \hat{C}_p = \frac{USL - LSL}{6\hat{\sigma}} = \frac{3.23 - 3.01}{6 \overline{R} / d_2} = \Sexpr{(3.23 - 3.01)/(6 * .1197 / 1.693)} $$
+      
+      For the data used in plot 2, we have
+      $$ \hat{C}_p = \frac{USL - LSL}{6\hat{\sigma}} = \frac{3.23 - 3.01}{6 \overline{MR} / d_2} = \Sexpr{(3.23 - 3.01)/(6 * .0812 / 1.128)} $$
+      
+      These are both small $\hat{C}_p$ values and do not suggest that the process can consistently product wafers within specifications.
+      
+    \item For plot 1 data, $\hat{\sigma}^2 = (\frac{\overline{R}}{d_2})^2 = (\frac{.1197}{1.693})^2 = \Sexpr{(.1197/1.693)^2}$. For plot 2 data, $\hat{\sigma}^2 = (\frac{\overline{MR}}{d_2})^2 = (\frac{.0812}{1.128})^2 = \Sexpr{(.0812/1.128)^2}$. The first represents the estimated variability of all the seperate measurements and the second represents the estimated variability of between wafer measurements.
+      
+    \item The $\overline{x}$ chart and $I$ chart are the exact same. It is only the definition of out-of-control that changes. Thus, the charts are not consistent in that they draw different conclusions; if considered single measurements, the process is considered statistically in control, if not, then it is out of control.
+      
+    \item I would recommend using a control chart process that takes into consideration the correlation between measurements in a single sample.
+      
     \end{enumerate}
     
+  \item 
+    \begin{enumerate}
+    \item The process does not appear to be in control. It's pretty obvious in the boxplot provided that the data is not symmetric. This is not ideal for process monitoring via control charts.
+      
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q8a.png}
+      \end{center}
+
+    \item The problems noted just above appear to be remediated a little by taking the square root of the response but there is still a right skew to the data and the process could still be considered out of control.
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q8b.png}
+      \end{center}
+
+    \item Now, there appears to be symmetry in the data and the process is not yielding any out of control signals.
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q8c.png}
+      \end{center}
+      
+    \item I would recommend that they use the log transformed data as that appears more symmetric and is better modeled using a normal distribution. This is an important assumption made in several of the quality control analysis techniques.
+
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}

@@ -19,7 +19,7 @@
 \begin{enumerate}
 \item
   \begin{enumerate}
-  \item $X \sim \mbox{Bin}(500, 0.002)$
+  \item $X \sim \mbox{Bin}(n = 500, p = 0.002)$
         
   \item $$(P(X<2))^{10} = (\Sexpr{pbinom(1, 500, .002)})^{10} = \Sexpr{pbinom(1, 500, .002)}^{10} $$
         
@@ -40,14 +40,14 @@
   cause = c('Bridgeing metal', 'Misalignment', 'Contamination', 'Poor contact', 'Poor development')
   totals = c(26, 11, 9, 45, 8)
       
-  stuff = data.frame(cause,totals)
+  stuff = data.frame(cause, totals)
   stuff$cause = factor(stuff$cause)
         
   stuff = stuff[order(stuff$totals, decreasing=T),]
   stuff$cause = factor(stuff$cause, levels=stuff$cause)
   stuff$cum = cumsum(stuff$totals)
 
-  ggplot(stuff, aes(x=cause)) + geom_bar(aes(y=totals), stat='identity') + geom_point(aes(y=cum)) + geom_path(aes(y=cum, group=1)) + theme_bw()
+  ggplot(stuff, aes(x=cause)) + geom_bar(aes(y=totals), stat='identity') + geom_point(aes(y=cum)) + geom_path(aes(y=cum, group=1)) + theme_bw() + geom_text(aes(x = cause, y = cum + 4, label = cum))
   @
 
 \item
@@ -58,7 +58,7 @@
     @
     $$ C_P = \frac{USL - LSL}{6\sigma} = \frac{26.2 - 23.4}{6 \cdot .5} = \Sexpr{cp} $$
     
-  \item Based on Table 8.3 in the text, we have that this process capability ratio does not meet the minimum recommended level of 1.33. While the process may be capable of meeting specifications, it doesn't seem likely that it would happen as consistently as desired.
+  \item Based on Table 8.3 in the text, we have that this process capability ratio, when the process is under statistical control, does not meet the minimum recommended level of 1.33. While the process may be capable of meeting specifications, it doesn't seem likely that it would happen as consistently as desired.
     
   \item The proportion of units currently produced not meeting specifications is given by
     \begin{align*}
@@ -69,36 +69,36 @@
     
   \item I would say absolutely not. If over a quarter of units produced are not acceptable, then there is clearly a problem and the process is not meeting specificiations.
     
-  \item If the manufacturer seeks to increase the $C_p$, they must first, make sure the center is lowered from its current value of $\mu = 25$ to $\mu_1 = 23.5 + \frac{26.1-23.5}{2} = \Sexpr{23.5 + (26.1-23.5)/2}$ so that the process is centered. Also, the characteristic standard deviation $\sigma = 1.25$ is far too large for the process to be considered capable of meeting specifications.
+  \item If the manufacturer seeks to increase the $C_p$, they must first, make sure the center is lowered from its current value of $\mu = 25$ to $\mu_1 = 23.5 + \frac{26.1-23.5}{2} = \Sexpr{23.5 + (26.1-23.5)/2}$ so that the process is centered. Also, the current characteristic standard deviation $\sigma = 1.25$ is far too large for the process to be considered capable of meeting specifications.
     
   \end{enumerate}
 
 \item 
   \begin{enumerate}
-    \item We have that $\hat{\sigma} = \frac{\bar{R}}{d_2} = \Sexpr{.8865 * 1.9}$.
-    \item We have that 
+    \item We have  $\hat{\sigma} = \frac{\overline{R}}{d_2} = \Sexpr{.8865 * 1.9}$.
+    \item We have  
       \begin{align*}
         UCL &= \bar{x} + 3\hat{\sigma} = 150.37 + 3\cdot \Sexpr{.8865 * 1.9} = \Sexpr{150.37 + .8865*1.9} \\
         LCL &= \bar{x} - 3\hat{\sigma} = 150.37 - 3\cdot \Sexpr{.8865 * 1.9} = \Sexpr{150.37 - .8865*1.9}
         \end{align*}
         
-    \item I would not suggest adopting these trial control limits if the machine is considered to be meeting some desired specification as there is one out of control signal in the $I$-chart labeled ``Test''. I would also want to investigate into possible explinations for such a high observation.
+    \item I would not suggest adopting these trial control limits if the machine is considered to be meeting some desired specification. There is only one out-of-control signal (labeled ``Test'') in the $I$-chart. I would also want to investigate into possible explanations for such a high observation.
       
-    \item The difference between the last and second to last observation is greater than the average absolute difference between observations ($\bar{R} = 1.9$) so removal of the last observation would slightly decrease the $CL$ for the $MR$ chart. The $LCL$ would remain 0 and the $UCL$ would decrease slightly as it is a linear function of $\bar{R}$ (namely, $UCL = D_4 \bar{R}$).
+    \item The difference between the last and second to last observation is greater than the average absolute difference between observations ($\overline{R} = 1.9$) so removal of the last observation would slightly decrease the $CL$ for the $MR$ chart. The $LCL$ would remain 0 and the $UCL$ would decrease slightly as it is a linear function of $\overline{R}$ (namely, $UCL = D_4 \overline{R}$).
       
-    \item Because the last observation is slightly above the sample average of $\bar{x} = 150.37$, we have that the centerline would decrease for the $I$ chart. The $UCL$ and $LCL$ are positive and negative linear functions of $\bar{R}$, respectively. Removing the last observation causes a decrease in $\bar{R}$ and thus a decrease and increase in the $UCL$ and $LCL$ for the $I$ chart.
+    \item Because the last observation is slightly above the sample average of $\overline{x} = 150.37$, we have that the centerline would decrease for the $I$ chart. The $UCL$ and $LCL$ are positive and negative linear functions of $\overline{R}$, respectively. Removing the last observation causes a decrease in $\overline{R}$ and thus a decrease and increase in the $UCL$ and $LCL$ for the $I$ chart.
   \end{enumerate}
   
   \item
     \begin{enumerate}
-    \item $\bar{X} - S$ chart:
+    \item $\overline{X} - S$ chart:
       \begin{center} 
         \includegraphics[width=.75\linewidth]{q6.png}
       \end{center}
       
     \item It appears that for samples 47, 57, 60, 61, and 64 that the process variability is out of control. All other samples do not signal an out of control process in terms of process variability.
       
-    \item It appears that samples 1, 44-45, 47, 49, 52-56, 65, 67-68, 70-71, are above aim and samples  21-27, 29-30, 60, and 73-80 are all below aim. All other samples appear to be on target (within the control limits).
+    \item It appears that samples 1, 44-45, 47, 49, 52-56, 65, 67-68, and 70-71 are above aim and samples 21-27, 29-30, 60, and 73-80 are all below aim. All other samples appear to be on target (within the control limits).
       
     \item I would not suggest changing the control limits as it appears that there is reason to suspect that out-of-control signals are being caused by external factors. For example, why did the first sample have such a large mean? There were also \textit{several} runs that were consistently below or above aim. Causes for these phenomena should be determined, and removed, before further analysis of the control limits.
       
@@ -153,7 +153,7 @@
       For the data used in plot 2, we have
       $$ \hat{C}_p = \frac{USL - LSL}{6\hat{\sigma}} = \frac{3.23 - 3.01}{6 \overline{MR} / d_2} = \Sexpr{(3.23 - 3.01)/(6 * .0812 / 1.128)} $$
       
-      These are both small $\hat{C}_p$ values and do not suggest that the process can consistently product wafers within specifications.
+      These are both small $\hat{C}_p$ values and do not suggest that the process can consistently produce wafers within specifications.
       
     \item For plot 1 data, $\hat{\sigma}^2 = (\frac{\overline{R}}{d_2})^2 = (\frac{.1197}{1.693})^2 = \Sexpr{(.1197/1.693)^2}$. For plot 2 data, $\hat{\sigma}^2 = (\frac{\overline{MR}}{d_2})^2 = (\frac{.0812}{1.128})^2 = \Sexpr{(.0812/1.128)^2}$. The first represents the estimated variability of all the seperate measurements and the second represents the estimated variability of between wafer measurements.
       
@@ -176,14 +176,15 @@
         \includegraphics[width=.75\linewidth]{q8b.png}
       \end{center}
 
-    \item Now, there appears to be symmetry in the data and the process is not yielding any out of control signals.
+    \item After log transforming the data there appears to be symmetry in the distribution of particles per wafer. The process is not yielding any out of control signals.
       \begin{center} 
         \includegraphics[width=.75\linewidth]{q8c.png}
       \end{center}
       
-    \item I would recommend that they use the log transformed data as that appears more symmetric and is better modeled using a normal distribution. This is an important assumption made in several of the quality control analysis techniques.
+    \item I would recommend that they use the log transformed data as that appears more symmetric and is thus better modeled using a normal distribution. This is an important assumption made in several of the quality control analysis techniques.
 
     \end{enumerate}
+
 \end{enumerate}
 
 \end{document}

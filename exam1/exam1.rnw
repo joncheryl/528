@@ -35,7 +35,7 @@
 
 \item Pareto chart for a check sheet:
   <<q3, echo=F, out.width='.7\\linewidth', fig.width=10, fig.height=7>>=
-  library(ggplot2)
+  suppressPackageStartupMessages(library(ggplot2))
       
   cause = c('Bridgeing metal', 'Misalignment', 'Contamination', 'Poor contact', 'Poor development')
   totals = c(26, 11, 9, 45, 8)
@@ -60,7 +60,7 @@
     
   \item Based on Table 8.3 in the text, we have that this process capability ratio does not meet the minimum recommended level of 1.33. While the process may be capable of meeting specifications, it doesn't seem likely that it would happen as consistently as desired.
     
-  \item The proportion of units currently produces not meeting specifications is given by
+  \item The proportion of units currently produced not meeting specifications is given by
     \begin{align*}
       P(x<23.4) + P(x>26.2) &= P \Big( z < \frac{23.4 - 25}{1.25} \Big) + P\Big( z > \frac{26.2-25}{1.25}\Big) \\
       &= \Phi(\Sexpr{(23.4-25)/1.25}) + (1 - \Phi(\Sexpr{(26.2-25)/1.25})) \\
@@ -69,10 +69,85 @@
     
   \item I would say absolutely not. If over a quarter of units produced are not acceptable, then there is clearly a problem and the process is not meeting specificiations.
     
-  \item 
+  \item If the manufacturer seeks to increase the $C_p$, they must first, make sure the center is lowered from its current value of $\mu = 25$ to $\mu_1 = 23.5 + \frac{26.1-23.5}{2} = \Sexpr{23.5 + (26.1-23.5)/2}$ so that the process is centered. Also, the characteristic standard deviation $\sigma = 1.25$ is far too large for the process to be considered capable of meeting specifications.
     
   \end{enumerate}
+
+\item 
+  \begin{enumerate}
+    \item We have that $\hat{\sigma} = \frac{\bar{R}}{d_2} = \Sexpr{.8865 * 1.9}$.
+    \item We have that 
+      \begin{align*}
+        UCL &= \bar{x} + 3\hat{\sigma} = 150.37 + 3\cdot \Sexpr{.8865 * 1.9} = \Sexpr{150.37 + .8865*1.9} \\
+        LCL &= \bar{x} - 3\hat{\sigma} = 150.37 - 3\cdot \Sexpr{.8865 * 1.9} = \Sexpr{150.37 - .8865*1.9}
+        \end{align*}
+        
+    \item I would not suggest adopting these trial control limits if the machine is considered to be meeting some desired specification as there is one out of control signal in the $I$-chart labeled ``Test''. I would also want to investigate into possible explinations for such a high observation.
+      
+    \item The difference between the last and second to last observation is greater than the average absolute difference between observations ($\bar{R} = 1.9$) so removal of the last observation would slightly decrease the $CL$ for the $MR$ chart. The $LCL$ would remain 0 and the $UCL$ would decrease slightly as it is a linear function of $\bar{R}$ (namely, $UCL = D_4 \bar{R}$).
+      
+    \item Because the last observation is slightly above the sample average of $\bar{x} = 150.37$, we have that the centerline would decrease for the $I$ chart. The $UCL$ and $LCL$ are positive and negative linear functions of $\bar{R}$, respectively. Removing the last observation causes a decrease in $\bar{R}$ and thus a decrease and increase in the $UCL$ and $LCL$ for the $I$ chart.
+  \end{enumerate}
   
+  \item
+    \begin{enumerate}
+    \item $\bar{X} - S$ chart:
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q6.png}
+      \end{center}
+      
+    \item It appears that for samples 47, 57, 60, 61, and 64 that the process variability is out of control. All other samples do not signal an out of control process in terms of process variability.
+      
+    \item It appears that samples 1, 44-45, 47, 49, 52-56, 65, 67-68, 70-71, are above aim and samples  21-27, 29-30, 60, and 73-80 are all below aim. All other samples appear to be on target (within the control limits).
+      
+    \item I would not suggest changing the control limits as it appears that there is reason to suspect that out-of-control signals are being caused by external factors. For example, why did the first sample have such a large mean? There were also \textit{several} runs that were consistently below or above aim. Causes for these phenomena should be determined, and removed, before further analysis of the control limits.
+      
+    \end{enumerate}
+
+  \item 
+    \begin{enumerate}
+      
+    \item Centerlines and control limits for $\overline{x}$/$R$ charts:
+      <<q7, echo=F>>=
+      uclx = 3.1227 + 1.023 * .1197
+      lclx = 3.1227 - 1.023 *.1197
+      uclr = 2.575 * .1197
+      lclr = 0
+      @
+
+      \begin{center}
+      \begin{tabular}{c | c c}
+         & $\overline{X}$ chart & $R$ chart \\ \hline
+        UCL & $\overline{\overline{x}} + A_2 \overline{R} = \Sexpr{uclx}$ & $D_4 \overline{R} = \Sexpr{uclr}$ \\
+        LCL & $\overline{\overline{x}} - A_2 \overline{R} = \Sexpr{lclx}$ & $D_3 \overline{R} = \Sexpr{lclr}$ \\
+        CL & $\overline{\overline{x}} = 3.1227 $ & $\overline{R} = .1197 $ \\
+        
+      \end{tabular}
+      \end{center}
+      
+    \item There are far more points outside of the control limits than would be expected. A total of 10 data points are outside the control limits in the $\overline{X}$ chart out of 74. We would expect only $0.3\%$ to be outside the control limits.
+      
+    \item Centerlines and control limits for $I$/$MR$ charts:
+      <<q7c, echo=F>>=
+      ucli = 3.1227 + 2/1.128 * .0812
+      lcli = 3.1227 - 2/1.128 * .0812
+      uclmr = 3.267 * .0812
+      lclmr = 0
+      @
+      
+      \begin{center}
+      \begin{tabular}{c | c c}
+         & $I$ chart & $MR$ chart \\ \hline
+        UCL & $\overline{\overline{x}} + \frac{3}{d_2} \overline{MR} = \Sexpr{ucli}$ & $D_4 \overline{MR} = \Sexpr{uclmr}$ \\
+        LCL & $\overline{\overline{x}} - \frac{3}{d_2} \overline{MR} = \Sexpr{lcli}$ & $D_3 \overline{MR} = \Sexpr{lclmr}$ \\
+        CL & $\overline{\overline{x}} = 3.1227 $ & $\overline{MR} = .0812 $ \\
+        
+      \end{tabular}
+      \end{center}
+
+    \item I would say that in this instance, the proportion of data points outside of the control limits is consistent with what would be expected.
+    \end{enumerate}
+    
 \end{enumerate}
 
 \end{document}

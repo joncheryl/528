@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath}
+
+\title{\vspace{-70pt} STATS 528: HW6 \vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+\item Enrollment Problem
+  
+  \begin{enumerate}
+  \item We have that $\hat{\sigma} = MSSD = 0.689$.
+        
+  \item Two-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q1.png}
+    \end{center}
+      
+    Upper one-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q1bb.png}
+    \end{center}
+      
+    Lower one-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q1bbb.png}
+    \end{center}
+      
+  \item An out-of-control signal is flagged on the upper side in 1993 and again in 1999 (if the cusum is reset after an out-of-control signal).
+    
+  \item It's clear from investicating the un-reset cusum data that the provided $\mu_0 = 88\%$ is likely off. Thus, using the reset cusum data, it appear that there was a significant shift sometime between 1993 and 1999. Using the formula provided on page 406 of the text we have that 
+    $$ \hat{\mu} = \mu_0 + K + \frac{C^+_i}{N^+} = 88 + .5 + \frac{9.1}{9} \aprox 89.5 $$
+    
+  \end{enumerate}
+  
+\item Enrollment Problem take 2
+  
+  \begin{enumerate}
+  \item We have that $\hat{\sigma} = MSSD = 0.689$ (no change).
+        
+  \item Two-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q2b.png}
+    \end{center}
+      
+    Upper one-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q2bb.png}
+    \end{center}
+      
+    Lower one-sided cusum plot:
+    \begin{center} 
+      \includegraphics[width=.75\linewidth]{q2bbb.png}
+    \end{center}
+      
+  \item The year where out-of-control signals occur happen at... They happen on the lower/upper side.
+    
+  \item The magnitude of the first significant shift it... which happened in the year...
+    
+  \end{enumerate}
+    
+\item $ARL_0$ and $ARL_1$ and other stuff
+
+\item $h$ and $k$ values for cusum
+  
+\item[Ex 9.9]
+  \begin{enumerate}
+    \item
+      
+    \item 
+        
+    \item
+      
+  \end{enumerate}
+  
+\item[Ex 9.14]
+  
+\end{enumerate}
+
+\end{document}

@@ -79,13 +79,20 @@
   \begin{enumerate}
     \item We have that $MSSD = 21.179$.
       
-    \item See attached SAS output.
+    \item SAS output is attached if more details are desired. The chart is provided here:
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q5.png}
+      \end{center}
+
         
     \item These values for $h = 8.01$ and $k = 0.25$ provide two things. First, they allow detection of $\frac{1}{2}\sigma$ shift in the process as $k$ is chosen to be halfway between the target and out-of-control value. Second, given table 9.4 on page 408 of the text, we see that if given a value of $k = 0.25$, choosing $h$ yields in an approximate in control average run length of 370. 
       
   \end{enumerate}
   
-\item[Ex 9.14] See attached SAS output.
+\item[Ex 9.14] SAS output is attached if more details are desired. The chart is provided here:
+      \begin{center} 
+        \includegraphics[width=.75\linewidth]{q6.png}
+      \end{center}
   
 \end{enumerate}
 

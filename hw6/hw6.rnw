@@ -39,12 +39,12 @@
       
   \item An out-of-control signal is flagged on the upper side in 1993 and again in 1999 (if the cusum is reset after an out-of-control signal).
     
-  \item It's clear from investicating the un-reset cusum data that the provided $\mu_0 = 88\%$ is likely off. Thus, using the reset cusum data, it appear that there was a significant shift sometime between 1993 and 1999. Using the formula provided on page 406 of the text we have that 
-    $$ \hat{\mu} = \mu_0 + K + \frac{C^+_i}{N^+} = 88 + .5 + \frac{9.1}{9} \aprox 89.5 $$
+  \item It's clear from investigating the un-reset cusum data that the provided $\mu_0 = 88\%$ is likely off. Thus, since the first out-of-control signal is in 1993, we can pretend that a shift occured sometime between 1991 and 1993. Using the formula provided on page 406 of the text we have that 
+    $$ \hat{\mu} = \mu_0 + K + \frac{C^+_i}{N^+} = 88 + .5 + \frac{3.066}{3} \approx \Sexpr{88 + .5 + 3.066/3} \%$$
     
   \end{enumerate}
   
-\item Enrollment Problem take 2
+\item Enrollment Problem using $\mu_0 = 88.653 \%$
   
   \begin{enumerate}
   \item We have that $\hat{\sigma} = MSSD = 0.689$ (no change).
@@ -64,23 +64,24 @@
       \includegraphics[width=.75\linewidth]{q2bbb.png}
     \end{center}
       
-  \item The year where out-of-control signals occur happen at... They happen on the lower/upper side.
+  \item An out-of-control signal is flagged on the lower side in 2007 (assuming the cusum is reset after an out-of-control signal).
     
-  \item The magnitude of the first significant shift it... which happened in the year...
+  \item Using the reset cusum data, it appear that there was a shift sometime between 2003 and 2007. Using the formula provided on page 406 of the text we have that 
+    $$ \hat{\mu} = \mu_0 - K - \frac{C^-_i}{N^+} = 88.653 - .5 - \frac{3.134}{4} \approx \Sexpr{88.653 - .5 - 3.134/4} \%$$
     
   \end{enumerate}
     
-\item $ARL_0$ and $ARL_1$ and other stuff
+\item It appears that $ARL_0 = 148.695$ and $ARL_1 = 5.286$ for both cusum analyses. The second plan would be more preferable as the aim mean is obviously more accurate.
 
-\item $h$ and $k$ values for cusum
+\item From the table on page 168 in the notes, we conclude that $h = 2.5$ and $k = 1$.
   
 \item[Ex 9.9]
   \begin{enumerate}
-    \item
+    \item We have that $MSSD = 21.179$.
       
     \item 
         
-    \item
+    \item These values for $h = 8.01$ and $k = 0.25$ provide two things. First, they allow detection of $\frac{1}{2}\sigma$ shift in the process as $k$ is chosen to be halfway between the target and out-of-control value. Second, given table 9.4 on page 408 of the text, we see that if given a value of $k = 0.25$, choosing $h$ yields in an approximate in control average run length of 370. 
       
   \end{enumerate}
   

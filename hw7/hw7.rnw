@@ -1,0 +1,90 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath, subcaption}
+
+\title{\vspace{-70pt} STATS 528: HW7 \vspace{-10pt}}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item The $p^{th}$ percentile is found by solving for $y_p$:  
+  \begin{align*}
+    p &= \int_0^{y_p} \frac{\beta}{\alpha} \Big( \frac{x}{\alpha} \Big)^{\beta-1} e^{-(x/\alpha)^\beta} dx \\
+    p &= -e^{-(x/\alpha)^\beta} \Big|_{x=0}^{x=y_p} \\
+    -p &= e^{-(y_p/\alpha)^\beta} - e^{0} \\
+    \ln (1-p) &= -\Big( \frac{y_p}{\alpha} \Big) ^\beta \\
+    (-\ln (1-p))^{1/\beta} &= \frac{y_p}{\alpha} \\
+    y_p &= \alpha (-\ln (1-p))^{1/\beta}
+  \end{align*}
+  
+\item The hazard function is provided by 
+  \begin{align*}
+    h(y) &= \frac{pdf(y)}{1 - cdf(y)} \\
+    h(y) &= \frac{\frac{\beta}{\alpha} \Big( \frac{y}{\alpha} \Big)^{\beta-1} e^{-(y/\alpha)^\beta}}{e^{-(y/\alpha)^\beta}} \\
+    h(y) &= (\beta/\alpha)(y/\alpha)^{\beta - 1}
+  \end{align*}
+  
+\item The derivative of the hazard function with respect to $y$ is 
+  $$ h'(y) = (\beta - 1) (\beta / \alpha^2) (y/\alpha)^{\beta-2}. $$
+  Since $y>0$, we have that the derivative is positive for $\beta >1$ and negative for $\beta <1$. Thus, the hazard function increases (for $y$) when $\beta>1$ and decreases when $\beta < 1$.
+  
+%  \newpage
+  
+\item
+  \begin{enumerate}
+    \item[(b)]  Of all the distributions fit to $Y$, the only that resulted not having any points in the probability plots out of the 95\% confidence bands were the Logistic, Loglogistic, Lognormal, and Normal distributions:
+  
+  \begin{figure}[h]
+    \centering
+    \begin{subfigure}[t]{.4\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{logistic.png}
+    \end{subfigure}
+    %
+    \begin{subfigure}[t]{.4\textwidth}
+      \centering
+      \includegraphics[width=\linewidth]{loglogistic.png}
+    \end{subfigure}
+    
+    \medskip
+
+    \begin{subfigure}[t]{.4\textwidth}
+      \centering
+      \vspace{0pt}% set the real top as the top
+      \includegraphics[width=\linewidth]{normal.png}
+    \end{subfigure}
+    %
+    \begin{subfigure}[t]{.4\textwidth}
+      \centering
+      \vspace{0pt}% set the real top as the top
+      \includegraphics[width=\linewidth]{lognormal.png}
+    \end{subfigure}
+  \end{figure}
+
+  \newpage
+ 
+  The Logistic and Normal fits are quite similar as are the Loglogistic and Lognormal fits. Of these, the Lognormal and Loglogistic probability plots seem to suggest best fits (the points in the plots appear relatively linear).
+ 
+    \item[(a)] The pdf of $Y$, assuming $Y$ has a Lognormal distribution, is:
+      
+      $$ f(Y) = \frac{1}{Y \cdot 0.261 \sqrt{2\pi}} e^{-\frac{(\ln(Y) - 0.945)^2}{2 \cdot 0.261^2}} $$
+      The pdf of $Y$, assuming $Y$ has a Loglogistic distribution, is:
+            
+      $$ f(Y) = \frac{e^{\frac{\ln(Y) - 0.942}{0.149}}}{Y \cdot 0.149 (1 + e^{\frac{\ln(Y) - 0.942}{0.149}})^2} $$
+      
+  \end{enumerate}
+  
+\end{enumerate}
+
+\end{document}

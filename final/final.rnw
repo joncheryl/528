@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{fullpage, graphicx, verbatim, amsmath, subcaption}
 
-\title{\vspace{-70pt} STATS 528: Final Exam \vspace{-10pt}b}
+\title{\vspace{-70pt} STATS 528: Final Exam \vspace{-10pt}}
 \author{John Sherrill\vspace{-20pt}}
       
 <<setup, include=F, cache=F, message=F>>=
@@ -36,42 +36,74 @@
   
 \item Question Two
   \begin{enumerate}
-  \item 
+  \item above 148 (a)
       
-  \item
+  \item below 148 (b)
     
-  \item
+  \item below 148 (b)
+   
+  \item above 148 (a)
+    
+  \item close to 148 (c)
+    
+  \item The process mean for sample 39 to 44 is larger. This is because the cusum chart is increasing across samples 39 to 44 and consequently the process mean must be greater than 148 whereas the cusum chart is decreasing across samples 25 to 30 implying the process mean is \textit{below} 148.
+    
+  \item The process mean for samples 1 to 8 is larger than the process mean for samples 51 to 58 because the cusum is increasing at a faster rate across sample 1 to 8 than sample 51 to 58.
+    
+  \item It appears that cure time is positively related with average density measurements. As cure time is increases, the process mean for average density seems to increase and as cure time is decreased, the process mean for average density decreases.
+    
+  \item It does not appear that temperature is associated with changes in the process. The only two instances were temperature is changed while keeping the other variables constant is between samples 32 and 33 and samples 34 and 35. There does not appear to be any changes in the process at these times.
+    
+  \item It appears that machine maintenence brought the process mean to the target. At sample 60, the cusum becomes constant indicating that the process mean is on target. The power outage that occured at sample 71 does not appear to have affecting the process insofar as the cusum chart can display.
           
   \end{enumerate}
 
 \item Question Three
   \begin{enumerate}
-  \item 
-      
-  \item
+  \item $ UCL = \mu + L \sigma \sqrt{\frac{\lambda}{2-\lambda}(1-(1-\lambda)^{2 \cdot i})} = 150 + 3 \frac{\sigma_0}{\sqrt{3}} \sqrt{\frac{0.25}{2-0.25}(1-(1-0.25)^{2\cdot 1}} = \Sexpr{150 + 3/sqrt(3) * sqrt(.25/(2-.25)*(1-(1-.25)^2))} $
     
-  \item
+    $ LCL = \mu - L \sigma \sqrt{\frac{\lambda}{2-\lambda}(1-(1-\lambda)^{2 \cdot i})} = 150 - 3 \frac{\sigma_0}{\sqrt{3}} \sqrt{\frac{0.25}{2-0.25}(1-(1-0.25)^{2\cdot 1}} = \Sexpr{150 - 3/sqrt(3) * sqrt(.25/(2-.25)*(1-(1-.25)^2))} $
+      
+  \item $z_2 = \lambda x_2 + (1 - \lambda) z_1 = 0.25 \cdot 150.64667 + 0.75 \cdot 149.94333 = \Sexpr{.25 * 150.64667 + .75 * 149.94333}$
+    
+  \item 150.73609?
+    
+  \item 151.51068?
+    
+  \item Increase (A) This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, the expected number of runs to encounter an out of control signal, if the process is in control would be larger.
           
+  \item Increase (A) This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, if the process is out of control, then it would take more runs to illicit an out of control signal.
   \end{enumerate}
   
 \item Question Four
   \begin{enumerate}
-  \item 
+  \item 1\% are below
       
-  \item
+  \item 2\% are above
     
-  \item
+  \item It is expected that 3.17\% be below
+    
+  \item It is expected that 0.127\% be above
+    
+  \item There are two outliers in the far right tail of the emperical distribution. Maybe they would make the difference?
+    
+  \item The few large outliers could be taken out. Perhaps they are part of a seperate phenominon that is not properly described by the distribution that describes the bulk of the data. One could also try different families of distributions besides the gamma, such as Log-normal for example.
           
   \end{enumerate}
   
 \item Question Five
   \begin{enumerate}
-  \item 
+  \item 251.69493
       
-  \item
+  \item $\hat{\sigma} = \frac{UCL - \mu}{L}\sqrt{\frac{2-\lambda}{\lambda(1-(1-\lambda)^{2 \cdot i})}} \sqrt{n} = \frac{252.35243-252}{3} \cdot \sqrt{\frac{2-.0.25}{0.25(1-(1-0.25)^2)}} \sqrt{1} = \Sexpr{(252.25243-252)/3 * sqrt((2-.25)/(.25*(1-(1-.25)^2)))}$
     
-  \item
+  \item It's clear in the EWMA chart that the measurements from the new device are lower than 252 as the chart seems to stay below 252 consistently.
           
+  \item The cusum chart decreases at a consistent rate. This implies that the process mean is below the target mean of 252 and also that it is constant.
+    
+  \item The new device provides measurements that are below 252. This is because the cusum chart is decreasing the whole time.
+    
+  \item I would say so. It appears that the new device is more precise. It yields values consistently. Perhaps the old device was only able to privide integer values and thus was unable to provide a more accurate response.
   \end{enumerate}
 
 \end{enumerate}

@@ -16,43 +16,91 @@
 
 \maketitle
 
-\begin{enumerate}
+\section{Trial Control Limits}
+Limiting inspection to runs 20 through 30, we find that the average between wafer variability is $\bar{s} = 7.1$ and that the average etch rate is $\bar{\bar{x}} = 436.2$.
 
-\item Trial control limits: Well, $\bar{s}$ for runs 20 and greater is 7.1 and $\bar{x}$ is 436.2. There were 6 observations in each sample so $A_3 = 1.287$ and 
+\begin{center} 
+  \includegraphics[width=.75\linewidth]{trialx_bar.png}
+\end{center}
+  
+Because there were 6 observations (i.e. wafers) in each sample, we have $A_3 = 1.287$ and upper and lower control limits may be calculated:
   $$ UCL = \bar{x} + A_3 \bar{s} = 436.2 + 1.287 \cdot 7.1 = \Sexpr{436.2 + 1.287 * 7.1} $$
   $$ LCL = \bar{x} - A_3 \bar{s} = 436.2 - 1.287 \cdot 7.1 = \Sexpr{436.2 - 1.287 * 7.1} $$
     
-\item Apply trial control limits to all of data: many out of control signals are thrown. Then, everything is fine after run 19. It's also pretty easy to see that the process had a higher mean before run 20 than after.
-  
-\item Normality: From SAS output, tests for normality all have large p-values, so no evidence there that the data isn't normally distributed. Histogram shows the mean rates are a little left skewed. Here we do clearly see that the process is not centered within the specification limits. The Q-Q plot isn't centered, but it doesn't look too bad (it's a straight line). I don't know how to interpret the P-P plot.
+\section{Analysis of Process Stability}
+The generated $\bar{x}$ and $s$ charts using the above control limits present several points of interest:
+
+\begin{center} 
+  \includegraphics[width=.75\linewidth]{x_bar.png}
+\end{center}
+
+It seems that the runs can be separated into three phases: runs 1 through 10, 11 through 19, and 20 through 30. 
+
+\begin{enumerate}
+  \item First, in runs 1 thought 10, there is a great amount variability in sample averages and the sample averages appear to have a higher mean than that from the trial ($\mu = 436.2$). An out-of-control signal is thrown on 7 of these 10 runs. Clearly the process is not in control across these runs. Upon questioning Mr. Ewma, it was mentioned that in between each of these runs, the flow controller device was shutdown and restarted as was the typical operating procedure. After run 10, the device was left running in the interest of providing better measurements. This shutdown-restart process may have added to the increased variability in etch rate measurements in runs 1 through 10.
+
+  \item Runs 11 through 19 have less variability in mean etch rate and sample standard deviations also appear to be less variable. But 4 out-of-control signals are still thrown. The mean etch rate also still appears to be above the aforementioned trial value. It is fair to say that the process is still out of control in runs 11 through 19.
     
-  There looks like there is a bimodal thing going on and if we make a histogram with overlapping categories, we see that the two distributions are coming from those before run 20 and those after. And all the left tail skew is coming from the pre-run 20 stuff. Since the engineers seem to understand that the process became undercontrol after run 19, perhaps process capability could be assessed using that subset. It doesn't seem wise to assess process capability over data obtained when the process is known to be out of control. The conclusions are not too much different: $\Sexpr{pnorm((420-436.2)/7.005)*100} \%$ fall below specification.
-      
-  Process capability: From SAS output, $C_p$ is 1.82 which is nice. But we can see in the histogram that the process is not even close to being centered within the specification limits. Thus, it's no surprise the $C_{pk}$ is 0.62 which is much less nice. That means that a good chunk of mean rates lie out of the specification limits. We got 
-  $$z = \frac{LSL - \bar{x}}{\hat{\sigma}} = \frac{420 - 440.5}{11} = \Sexpr{(420-440.5)/11} $$
-  
-  so fallout is going to be $\Sexpr{pnorm((420-440.5)/11)*100} \%$ below specification.
-
-\item Variance components: Manually we obtain 
-  $$\hat{\sigma^2}_{run} = 59.573 $$
-  $$\hat{\sigma^2}_{wafer} = 75.227 $$
-  $$\hat{\sigma}_{site} = 1464.615 $$.
-  
-  And with maximum-likelihood estimation we obtain
-  $$\hat{\sigma^2}_{run} = 33.83 $$
-  $$\hat{\sigma^2}_{wafer} = 0 $$
-  $$\hat{\sigma}_{site} = 1390.32 $$.
-
-  So it's clear that there is a huge about of variation going on between the sites. This is completely due to site 9, which has a mean etch rate almost 25\% higher than the other sites. It site 9 is removed then manually we obtain 
-  $$\hat{\sigma^2}_{run} = 61.857 $$
-  $$\hat{\sigma^2}_{wafer} = 82.852 $$
-  $$\hat{\sigma}_{site} = 143.329 $$.
-  
-  And with maximum-likelihood estimation we obtain
-  $$\hat{\sigma^2}_{run} = 48.05 $$
-  $$\hat{\sigma^2}_{wafer} = 64.94 $$
-  $$\hat{\sigma}_{site} = 143.33 $$.
-  
+  \item After run 19, the process seems to have come under control. No out-of-control signals were thrown after run 19 as variability in average etch rate measurements appears to have dropped. Mr. Ewma also mentioned that after run 19, the flow controller underwent a recalibration maintenance procedure. This is the likely cause of the drastic drop in average etch rate variability.
 \end{enumerate}
 
+\section{Process Capability}
+\subsection{Normality Assumption}
+We can see from the SAS output that tests for normality all have large p-values so no evidence in this respect is given that the data isn't normally distributed (see attached SAS code, page 5)
+
+Points on the Q-Q plot lie closely to a straight line giving some evidence that the data is distributed normally.
+
+\begin{center} 
+  \includegraphics[width=.75\linewidth]{qq1.png}
+\end{center}
+
+We can see from a histogram of the sample averages that the mean rates are a little left skewed and also that the process is not centered within the specification limits (420 to 540). There also appears to be some bi-modal aspect to the data.
+
+\begin{center} 
+  \includegraphics[width=.75\linewidth]{hist1.png}
+\end{center}
+
+From a histogram with overlapping categories below, we can see that the two distributions are coming from those before run 20 and those after. Also, the left skewness seen above is a byproduct of the the runs before run 20. In spite of all this, I believe it is fine to assume that the sample average etch rates are normally distributed.
+
+\begin{center} 
+  \includegraphics[width=.75\linewidth]{test.png}
+\end{center}
+
+Since the engineers seem to understand that the process came under control after run 19, perhaps process capability could be assessed using that subset. It doesn't seem wise to assess process capability over data obtained when the process is known to be operating in sub-optimal conditions.
+      
+\subsection{Capability Assessment}
+It can be seen in the attached SAS output on page 8, $C_p=1.82 $ but it is easy to see in the SAS generated histogram above that the process is not even close to being centered within the specification limits. Thus, it's no surprise the $C_{pk}$ is 0.62 which shows that the process may have capability issues. Such a low $C_{pk}$ means that a large portion of mean etch rates lie out of the specification limits. Assuming that means are normally distributed we have:
+
+  $$z = \frac{LSL - \bar{x}}{\hat{\sigma}} = \frac{420 - 440.5}{11} = \Sexpr{(420-440.5)/11} $$
+  
+  so $\Sexpr{pnorm((420-440.5)/11)*100} \%$ will fall below specification. If only the last 11 runs were used to calculate process capability, the conclusions would not be greatly different: 
+    $$z = \frac{LSL - \bar{x}}{\hat{\sigma}} = \frac{420 - 436.2}{7.005} = \Sexpr{(420-436.2)/7.005} $$
+
+and $\Sexpr{pnorm((420-436.2)/7.005)*100} \%$ will fall below specification.
+
+\section{Variance components}
+Let estimated between run, between wafer, and between site variability be denoted by $\hat{\sigma}^2_{run}, \hat{\sigma}^2_{wafer}, \hat{\sigma}^2_{site} $ respectively. We can manually calculate these values and obtain
+
+$$\hat{\sigma}^2_{run} = 59.573 $$
+$$\hat{\sigma}^2_{wafer} = 75.227 $$
+$$\hat{\sigma}^2_{site} = 1464.615 .$$
+  
+Using maximum-likelihood estimation we obtain
+$$\hat{\sigma}^2_{run} = 33.83 $$
+$$\hat{\sigma}^2_{wafer} = 0 $$
+$$\hat{\sigma}^2_{site} = 1390.32 .$$
+
+Regardless of the method of variance estimation, it's clear that the lion's share of variation occurs between sites. This appears to be almost completely due to site 9, which has a mean etch rate almost 25\% higher than the other sites. If site 9 is removed from the data then manual estimation yields
+$$\hat{\sigma}^2_{run} = 61.857 $$
+$$\hat{\sigma}^2_{wafer} = 82.852 $$
+$$\hat{\sigma}_{site} = 143.329 .$$
+  
+and maximum-likelihood estimation provides
+
+$$\hat{\sigma}^2_{run} = 48.05 $$
+$$\hat{\sigma}^2_{wafer} = 64.94 $$
+$$\hat{\sigma}_{site} = 143.33 .$$
+
+In conclusion, if the etch rate for site 9 could be put in line with the etch rates for the other sites, the largest source of etch rate variability can be done away with. Also, if the flow controller is not restarted at each run and is properly calibrated on a continual basis, then the process would more consistently be brought under control.
+  
 \end{document}

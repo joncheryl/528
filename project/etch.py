@@ -34,14 +34,14 @@ var_total = etch['value'].var()
 ss_total = var_total * (30*6*9 - 1)
 
 
-etchg20 = etch_raw.query('run >= 20')
-etchl20 = etch_raw.query('run < 20')
+etch_a = etch_raw.query('run <= 19')
+etch_c = etch_raw.query('run >= 20')
 
-'''
-etch_test = pd.DataFrame({'Good': etchg20['sitemn'], 'Bad':etchl20['sitemn']}, columns=['Good','Bad'])
+plt.figure()
+etch_test = pd.DataFrame({'Runs1-19': etch_a['sitemn'], 'Runs20-30':etch_c['sitemn']}, columns=['Runs1-19','Runs20-30'])
 etch_test.plot(kind='hist', alpha=.5, bins=20)
-plt.show()
-'''
+plt.savefig('test.png')
+#plt.show()
 
 '''
 etch_raw.hist(bins=20)

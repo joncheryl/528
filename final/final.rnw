@@ -1,0 +1,79 @@
+\documentclass{article}
+\usepackage{fullpage, graphicx, verbatim, amsmath, subcaption}
+
+\title{\vspace{-70pt} STATS 528: Final Exam \vspace{-10pt}b}
+\author{John Sherrill\vspace{-20pt}}
+      
+<<setup, include=F, cache=F, message=F>>=
+  library(knitr)
+  opts_chunk$set(fig.align='center', fig.width=5, fig.height=4, out.width='.5\\linewidth
+', tidy=T)
+  options(replace.assign=TRUE, width=75, digits = 3, max.print='75', show.signif.stars = FALSE, scipen=10)
+  require(xtable)
+@
+  
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+
+\item Question One
+  \begin{enumerate}
+  \item ARL(0) is the average run length to a false out of control signal.
+      
+  \item ARL(Delta) is the average run length to a true out of control signal if there is a $\delta \sigma$ shift in the mean.
+
+  \item $h$ is like the tolerance parameter, so ARL(0) would increase.
+
+  \item $h$ is like the tolerance parameter, so ARL(Delta) would increase too.
+
+  \item $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(0) would decrease.
+      
+  \item $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(Delta) would decrease.
+
+  \end{enumerate}
+  
+\item Question Two
+  \begin{enumerate}
+  \item 
+      
+  \item
+    
+  \item
+          
+  \end{enumerate}
+
+\item Question Three
+  \begin{enumerate}
+  \item 
+      
+  \item
+    
+  \item
+          
+  \end{enumerate}
+  
+\item Question Four
+  \begin{enumerate}
+  \item 
+      
+  \item
+    
+  \item
+          
+  \end{enumerate}
+  
+\item Question Five
+  \begin{enumerate}
+  \item 
+      
+  \item
+    
+  \item
+          
+  \end{enumerate}
+
+\end{enumerate}
+
+\end{document}

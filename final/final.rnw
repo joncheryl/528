@@ -20,17 +20,17 @@
 
 \item Question One
   \begin{enumerate}
-  \item ARL(0) is the average run length to a false out of control signal.
-      
-  \item ARL(Delta) is the average run length to a true out of control signal if there is a $\delta \sigma$ shift in the mean.
-
+  \item ARL(Delta) is the average run length to a true, out of control signal if there is a $\delta \sigma$ shift in the mean.
+  
+  \item ARL(0) is the average run length to a false, out of control signal.
+  
   \item $h$ is like the tolerance parameter, so ARL(0) would increase.
+  
+  \item Increase (B). $h$ is the tolerance parameter, so ARL(Delta) would increase.
 
-  \item $h$ is like the tolerance parameter, so ARL(Delta) would increase too.
-
-  \item $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(0) would decrease.
+  \item Decrease (A). $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(0) would decrease.
       
-  \item $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(Delta) would decrease.
+  \item Decrease (A). $k$ is like the sensitivity parameter, so decreasing it, makes the slack band smaller. Thus, ARL(Delta) would decrease.
 
   \end{enumerate}
   
@@ -46,33 +46,33 @@
     
   \item close to 148 (c)
     
-  \item The process mean for sample 39 to 44 is larger. This is because the cusum chart is increasing across samples 39 to 44 and consequently the process mean must be greater than 148 whereas the cusum chart is decreasing across samples 25 to 30 implying the process mean is \textit{below} 148.
+  \item The process mean for sample 39 to 44 is larger. This is because the cusum chart is increasing across samples 39 to 44 and consequently the process mean must be greater than 148. The cusum chart is decreasing across samples 25 to 30 implying the process mean is \textit{below} 148.
     
   \item The process mean for samples 1 to 8 is larger than the process mean for samples 51 to 58 because the cusum is increasing at a faster rate across sample 1 to 8 than sample 51 to 58.
     
   \item It appears that cure time is positively related with average density measurements. As cure time is increases, the process mean for average density seems to increase and as cure time is decreased, the process mean for average density decreases.
     
-  \item It does not appear that temperature is associated with changes in the process. The only two instances were temperature is changed while keeping the other variables constant is between samples 32 and 33 and samples 34 and 35. There does not appear to be any changes in the process at these times.
+  \item It does not appear that temperature is associated with changes in the process. The only two instances were temperature is changed while keeping the other variables constant is between samples 32 and 33 and samples 34 and 35. There does not appear to be any changes in the process at these times. However, this was just for two samples and perhaps a longer run would be required to see any change.
     
-  \item It appears that machine maintenence brought the process mean to the target. At sample 60, the cusum becomes constant indicating that the process mean is on target. The power outage that occured at sample 71 does not appear to have affecting the process insofar as the cusum chart can display.
+  \item It appears that machine maintenence brought the process mean to the target. At sample 60, the cusum becomes constant indicating that the process mean is on target. The power outage that occured at sample 71 does not appear to have affected the process insofar as the cusum chart can display.
           
   \end{enumerate}
 
 \item Question Three
   \begin{enumerate}
-  \item $ UCL = \mu + L \sigma \sqrt{\frac{\lambda}{2-\lambda}(1-(1-\lambda)^{2 \cdot i})} = 150 + 3 \frac{\sigma_0}{\sqrt{3}} \sqrt{\frac{0.25}{2-0.25}(1-(1-0.25)^{2\cdot 1}} = \Sexpr{150 + 3/sqrt(3) * sqrt(.25/(2-.25)*(1-(1-.25)^2))} $
+  \item $ UCL = \mu + L \sigma \sqrt{\frac{\lambda}{2-\lambda}(1-(1-\lambda)^{2 \cdot i})} = 150 + 3 \frac{\sigma_0}{\sqrt{3}} \sqrt{\frac{0.25}{2-0.25}(1-(1-0.25)^{2\cdot 1}} = \Sexpr{150 + 3/sqrt(3) * sqrt(.25/(2-.25)*(1-(1-.25)^(2*1)))} $
     
     $ LCL = \mu - L \sigma \sqrt{\frac{\lambda}{2-\lambda}(1-(1-\lambda)^{2 \cdot i})} = 150 - 3 \frac{\sigma_0}{\sqrt{3}} \sqrt{\frac{0.25}{2-0.25}(1-(1-0.25)^{2\cdot 1}} = \Sexpr{150 - 3/sqrt(3) * sqrt(.25/(2-.25)*(1-(1-.25)^2))} $
       
   \item $z_2 = \lambda x_2 + (1 - \lambda) z_1 = 0.25 \cdot 150.64667 + 0.75 \cdot 149.94333 = \Sexpr{.25 * 150.64667 + .75 * 149.94333}$
     
-  \item 150.73609?
+  \item 150.73609
     
-  \item 151.51068?
+  \item 151.51068
     
-  \item Increase (A) This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, the expected number of runs to encounter an out of control signal, if the process is in control would be larger.
+  \item Increase (A). This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, the expected number of runs to encounter an out of control signal, if the process is in control, would be larger.
           
-  \item Increase (A) This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, if the process is out of control, then it would take more runs to illicit an out of control signal.
+  \item Increase (A). This would be due to the fact that one is increasing the width of the interval that is considered acceptable for the EWMA. Thus, if the process is out of control, then it would take more runs to illicit an out of control signal.
   \end{enumerate}
   
 \item Question Four
@@ -81,13 +81,13 @@
       
   \item 2\% are above
     
-  \item It is expected that 3.17\% be below
+  \item It is expected that 3.17\% of the data be below
     
-  \item It is expected that 0.127\% be above
+  \item It is expected that 0.127\% of the data be above
     
-  \item There are two outliers in the far right tail of the emperical distribution. Maybe they would make the difference?
+  \item There are two outliers in the far right tail of the emperical distribution that perhaps provide a difference large enough to make the Anderson-Darling test significant. In contrast, perhaps the comparisons of the CDFs performed in the Kolmogorov-Smirnov test is not significantly affected.
     
-  \item The few large outliers could be taken out. Perhaps they are part of a seperate phenominon that is not properly described by the distribution that describes the bulk of the data. One could also try different families of distributions besides the gamma, such as Log-normal for example.
+  \item The few large outliers could be taken out. Perhaps they are part of a seperate phenominon that is not properly described by the distribution that describes the bulk of the data. One could also try different families of distributions besides the gamma, such as Log-normal.
           
   \end{enumerate}
   
@@ -103,7 +103,7 @@
     
   \item The new device provides measurements that are below 252. This is because the cusum chart is decreasing the whole time.
     
-  \item I would say so. It appears that the new device is more precise. It yields values consistently. Perhaps the old device was only able to privide integer values and thus was unable to provide a more accurate response.
+  \item I would say so. It appears that, unlike the old device, the new device is not limited to integer-only output. Also, the new device yields consistent output. In terms of strictly \textit{reliable} output, the old device seems hard to beat since it seems guarenteed to read 252. However, since the new device is not limited to integer-value output and seems to yield measurements that are consistent, I would say the new device is better.
   \end{enumerate}
 
 \end{enumerate}
